@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Chat en Vivo</title>
-  <link rel="stylesheet" href="css/chat.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -63,12 +62,12 @@
     <button>Enviar</button>
   </form>
 
-  <!-- Cargar Socket.IO desde CDN -->
+  <!-- Socket.IO desde CDN -->
   <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" crossorigin="anonymous"></script>
   
   <script>
     // Conectar al backend de Render (sin barra final)
-    const socket = io('https://chat-backend-1l6u.onrender.com');
+    const socket = io("https://chat-backend-1l6u.onrender.com");
 
     const form = document.getElementById("chat-form");
     const input = document.getElementById("m");
@@ -88,6 +87,11 @@
       item.textContent = msg;
       messages.appendChild(item);
       messages.scrollTop = messages.scrollHeight;
+    });
+
+    // Debug: mostrar en consola cuando se conecta
+    socket.on("connect", () => {
+      console.log("Conectado al servidor de chat en Render ✅");
     });
   </script>
 </body>
