@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat en Vivo</title>
+  <link rel="stylesheet" href="css/chat.css">
+</head>
+<body>
+  <h2 style="text-align:center; padding:10px;">💬 Chat en Vivo</h2>
+  <div id="messages"></div>
+  <form id="chat-form">
+    <input id="m" autocomplete="off" placeholder="Escribe un mensaje...">
+    <button>Enviar</button>
+  </form>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const form = document.getElementById("chat-form");
+    const input = document.getElementById("m");
+    const messages = document.getElementById("messages");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (input.value) {
+        socket.emit("chat message", input.value);
+        input.value = "";
+      }
+    });
+
+    socket.on("chat message", (msg) => {
+      const item = document.createElement("div");
+      item.classList.add("msg");
+      item.textContent = msg;
+      messages.appendChild(item);
+      messages.scrollTop = messages.scrollHeight;
+    });
+  </script>
+</body>
+</html>
