@@ -5,7 +5,6 @@
   <title>Chat en Vivo</title>
   <link rel="stylesheet" href="css/chat.css">
   <style>
-    /* Pequeños estilos para que se vea bien */
     body {
       font-family: Arial, sans-serif;
       background: #f5f5f5;
@@ -65,10 +64,10 @@
   </form>
 
   <!-- Cargar Socket.IO desde CDN -->
-  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" integrity="sha384-3K9sXlQi4l0k14EyJ8k7vsP12dL2/h4y95rzw2PNp4B1vRXH4v2R8mRQzU7I7/gt" crossorigin="anonymous"></script>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" crossorigin="anonymous"></script>
   
   <script>
-    // Conectar al backend de Render
+    // Conectar al backend de Render (sin barra final)
     const socket = io('https://chat-backend-1l6u.onrender.com');
 
     const form = document.getElementById("chat-form");
